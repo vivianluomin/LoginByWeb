@@ -1,6 +1,5 @@
 package com.example.asus1.xiyousearch.Activities
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,18 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.Headers
 import com.example.asus1.xiyousearch.R
 import com.example.asus1.xiyousearch.Services.LoginService
-import com.example.asus1.xiyousearch.Services.MoveService
 import com.example.asus1.xiyousearch.Services.getCookieService
 import com.example.asus1.xiyousearch.URLUtil
 import okhttp3.ResponseBody
+import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Url
-import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -132,18 +127,21 @@ class MainActivity : AppCompatActivity() {
 
 
         override fun getResponed(response: Response<ResponseBody>) {
-            Log.d(TAG,""+response.code())
-            Log.d(TAG,response.body().string())
 
-            Log.d(TAG,response.message())
+            Log.d(TAG,"Login code："+response.code())
+            val elements = Jsoup.parse(response.body().string())
+                    .select("script")
+            if(elements.size>=2){
+                val element = elements[1]
+                val alrt = element.html().toString().split(";")[0]
+                Toast.makeText(this@MainActivity,alrt,Toast.LENGTH_SHORT).show()
+                changeCheckCode()
+            }else{
 
+
+            }
         }
     }
 
-    val moveCallback =  object :URLUtil.CallBack<ResponseBody>{
-        override fun getResponed(response: Response<ResponseBody>) {
-            Log.d(TAG,response.body().string())
-            Log.d(TAG,""+response.code()+" move")
-        }
-    }
+
 }

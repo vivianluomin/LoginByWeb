@@ -21,7 +21,7 @@ object URLUtil{
     val LOGIN_URL :String = "http://222.24.62.120"
     val LOGIN_MOVE:String = "/xs_main.aspx?xh="
 
-    val STUDENT :String = "ѧ��"
+    val STUDENT  = "ѧ��"
 
     var cookie :String = ""
 
@@ -52,12 +52,20 @@ object URLUtil{
 
     private val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(ReadCookie())
+            .build()
+
+    private val cookieClient = OkHttpClient.Builder()
             .addInterceptor(UseCookie())
             .build()
 
      val client :Retrofit = Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(LOGIN_URL).build()
+
+    val mainClient = Retrofit.Builder()
+            .client(cookieClient)
+            .baseUrl(LOGIN_URL)
+            .build()
 
 
 

@@ -5,4 +5,5 @@
     <string name="user_name">请输入学号</string>
     <string name="user_password">请输入密码</string>
     <string name="checkCode">请输入验证码</string>
+    <string name="wrongCheckCode">验证码错误</string>
 </resources>

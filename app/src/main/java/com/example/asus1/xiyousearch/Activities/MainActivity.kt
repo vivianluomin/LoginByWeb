@@ -8,7 +8,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.Headers
 import com.example.asus1.xiyousearch.R
 import com.example.asus1.xiyousearch.Services.LoginService
 import com.example.asus1.xiyousearch.Services.MoveService
@@ -17,6 +20,8 @@ import com.example.asus1.xiyousearch.URLUtil
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
+import retrofit2.http.Url
+import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,47 +49,83 @@ class MainActivity : AppCompatActivity() {
         mChechCodeImage = findViewById(R.id.iv_checkcode)
         mLoginText = findViewById(R.id.tv_login)
 
-
-        Glide.with(this)
-                .load(URLUtil.CHECK_CODE)
-                .error(R.drawable.bg_erro)
-                .placeholder(R.drawable.bg_erro)
-                .into(mChechCodeImage)
-        mClickCount ++
-
-
+        getCookie()
         setListener()
+
+    }
+
+
+    private fun getCookie(){
+        var CookieService = URLUtil.client.create(getCookieService::class.java).getCookie(URLUtil.CHECK_CODE)
+        URLUtil.doRequest(CookieService,cookieCallBack)
 
     }
 
     private fun  setListener(){
 
         mChechCodeImage.setOnClickListener(View.OnClickListener {
-            var url :String  = URLUtil.CHECK_CODE
-            for (i in 1..mClickCount){
-                url+="?"
-            }
-
-            Log.d(TAG,url)
-
-            Glide.with(this)
-                    .load(url)
-                    .error(R.drawable.bg_erro)
-                    .placeholder(R.drawable.bg_erro)
-                    .into(mChechCodeImage)
-            mClickCount ++
 
 
+            changeCheckCode()
         })
 
         mLoginText.setOnClickListener(View.OnClickListener {
 
-            val cookieService = URLUtil.client.create(getCookieService::class.java).getCookie()
-            URLUtil.doRequest(cookieService,callback)
+            val name  = mUserName.text.toString()
+            val password = mUserPassword.text.toString()
+            val checkcode = mCheckCode.text.toString()
+
+            val loginService :Call<ResponseBody> = URLUtil.mainClient
+                    .create(LoginService::class.java)
+                    .doLogin("dDwxNTMxMDk5Mzc0Ozs+lYSKnsl/mKGQ7CKkWFJpv0btUa8="
+                            ,name
+                            ,""
+                            ,password
+                            ,checkcode
+                            ,URLUtil.STUDENT
+                            ,""
+                            ,""
+                            ,""
+                            )
+
+            URLUtil.doRequest(loginService,callback)
 
 
         })
 
+    }
+
+    private fun changeCheckCode(){
+        var url :String  = URLUtil.CHECK_CODE
+        for (i in 1..mClickCount){
+            url+="?"
+        }
+
+        Log.d(TAG,url)
+
+        var CookieService = URLUtil.mainClient.create(getCookieService::class.java).getCookie(url.trim())
+        URLUtil.doRequest(CookieService,cookieCallBack)
+    }
+
+
+   private fun saveImage(response: Response<ResponseBody>){
+        Glide.with(this)
+                .load(response.body().bytes())
+                .error(R.drawable.bg_erro)
+                .placeholder(R.drawable.bg_erro)
+                .into(mChechCodeImage)
+       mClickCount ++
+    }
+
+    val cookieCallBack = object :URLUtil.CallBack<ResponseBody>{
+        override fun getResponed(response: Response<ResponseBody>) {
+            Log.d(TAG,"getcookie"+response.code())
+            if(response.code() == 200){
+                saveImage(response)
+
+            }
+
+        }
     }
 
     val callback :URLUtil.CallBack<ResponseBody> = object : URLUtil.CallBack<ResponseBody> {
@@ -92,20 +133,9 @@ class MainActivity : AppCompatActivity() {
 
         override fun getResponed(response: Response<ResponseBody>) {
             Log.d(TAG,""+response.code())
-            if(response.code() == 200){
+            Log.d(TAG,response.body().string())
 
-                val name  = mUserName.text.toString()
-                val password = mUserPassword.text.toString()
-                val checkcode = mCheckCode.text.toString()
-
-
-
-                val loginService :Call<ResponseBody> = URLUtil.client
-                        .create(LoginService::class.java)
-                        .doLogin(name,password,checkcode,URLUtil.STUDENT)
-
-                URLUtil.doRequest(loginService,moveCallback)
-            }
+            Log.d(TAG,response.message())
 
         }
     }

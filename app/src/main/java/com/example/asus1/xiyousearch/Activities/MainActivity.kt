@@ -1,5 +1,6 @@
 package com.example.asus1.xiyousearch.Activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -131,13 +132,15 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG,"Login code："+response.code())
             val elements = Jsoup.parse(response.body().string())
                     .select("script")
-            if(elements.size>=2){
+            Log.d(TAG,"elements :"+elements.size)
+            if(elements.size==2){
                 val element = elements[1]
                 val alrt = element.html().toString().split(";")[0]
                 Toast.makeText(this@MainActivity,alrt,Toast.LENGTH_SHORT).show()
                 changeCheckCode()
             }else{
 
+                startActivity(Intent(this@MainActivity,HomePageActivity::class.java))
 
             }
         }

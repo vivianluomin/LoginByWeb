@@ -6,4 +6,5 @@
 
     <color name="textColor">#333333</color>
     <color name="main_bule">#27408B</color>
+    <color name="click">#ddd</color>
 </resources>

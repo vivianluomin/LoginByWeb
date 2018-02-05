@@ -6,4 +6,11 @@
     <string name="user_password">请输入密码</string>
     <string name="checkCode">请输入验证码</string>
     <string name="wrongCheckCode">验证码错误</string>
+    <string name="home_page">首页</string>
+    <string name="personal_information">个人信息</string>
+    <string name="change_password">修改密码</string>
+    <string name="personal_classes">个人课表</string>
+    <string name="search_grades">成绩查询</string>
+    <string name="school_plan">培养计划</string>
+    <string name="make_up_exam">补考查询</string>
 </resources>

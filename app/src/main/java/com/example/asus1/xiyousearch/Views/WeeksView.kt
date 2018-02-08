@@ -18,8 +18,9 @@ class WeeksView :View{
     private var mWidth = 0
     private  var mHeight = 0
 
-    private val mWeeks  = Array<String>(5){"星期一";"星期二";"星期三";"星期四";"星期五"}
+    private val mWeeks  = arrayOf("周一","周二","周三","周四","周五","周六","周日")
 
+    private val mClassSize = 100
 
     constructor(context: Context?) : this(context,null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs,0)
@@ -37,12 +38,19 @@ class WeeksView :View{
         var left = paddingLeft
         var right = paddingRight
         var top = paddingTop
-        var textsize = (mWidth-left-right)/5
+        var weeksize = (mWidth-left-right)/7
         if (canvas!=null){
             canvas.drawLine(left.toFloat(),top.toFloat(),(mWidth-left-right).toFloat(),(top+2).toFloat(),mPaint)
-            for (i in 0..4){
 
+            mPaint.textSize = (24).toFloat()
+            mPaint.textAlign = Paint.Align.CENTER
+            for (i in 0..6){
+                canvas.drawText(mWeeks[i],(mClassSize+weeksize*i).toFloat(),(top+weeksize/3).toFloat(),mPaint)
             }
+
+            canvas.drawLine(left.toFloat(),(top+weeksize/2).toFloat(),(mWidth-left-right).toFloat(),(top+2+weeksize/2).toFloat(),mPaint)
+
+
         }
 
         super.onDraw(canvas)
@@ -58,12 +66,12 @@ class WeeksView :View{
         if(widthMode == MeasureSpec.EXACTLY){
             mWidth = widthSize
         }else{
-            mWidth = 300
+            mWidth = resources.displayMetrics.widthPixels
         }
         if(heigthMode == MeasureSpec.EXACTLY){
             mHeight  = heightSize
         }else{
-            mHeight = 300
+            mHeight = resources.displayMetrics.heightPixels
         }
 
         setMeasuredDimension(mWidth,mHeight)

@@ -9,12 +9,19 @@
 
 
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <fragment
-            android:name="com.example.asus1.xiyousearch.Fragments.HomePageFragment"
+            android:name="com.example.asus1.xiyousearch.Fragments.BlankFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fg_content"
             />
+
+    </FrameLayout>
 
 
     <include layout="@layout/view_leftdrawer"

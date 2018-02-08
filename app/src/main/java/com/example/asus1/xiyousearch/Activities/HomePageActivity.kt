@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.example.asus1.xiyousearch.Fragments.*
@@ -21,8 +22,10 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var  mChangePassword:TextView
     private lateinit var  mPersonalInfo:TextView
 
+    private val TAG = "HomePageActivity"
+
     private val mFragmentManager = supportFragmentManager
-    private val mFragmentTransaction = mFragmentManager.beginTransaction()
+    private var mFragmentTransaction = mFragmentManager.beginTransaction()
 
     private var mFlag = R.id.tv_homepage
 
@@ -49,7 +52,9 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
         mPersonalInfo.setOnClickListener(this)
 
 
-
+        mFragmentTransaction = mFragmentManager.beginTransaction()
+        mFragmentTransaction.replace(R.id.fg_content,HomePageFragment())
+        mFragmentTransaction.commit()
     }
 
     override fun onClick(p0: View?) {
@@ -57,6 +62,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
         when(p0?.id){
             R.id.tv_homepage ->{
                 if(R.id.tv_homepage!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,HomePageFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_homepage
@@ -65,6 +71,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
             }
             R.id.tv_search_grades ->{
                 if(R.id.tv_search_grades!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,PersonalGradesFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_search_grades
@@ -74,6 +81,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
 
             R.id.tv_personal_classes->{
                 if (R.id.tv_personal_classes!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,PersonalClassesFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_personal_classes
@@ -82,6 +90,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
 
             R.id.tv_school_plan->{
                 if(R.id.tv_school_plan!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,SchoolPlanFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_school_plan
@@ -91,6 +100,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
 
             R.id.tv_make_up_exam->{
                 if (R.id.tv_make_up_exam!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,MackUpExamFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_make_up_exam
@@ -99,6 +109,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
             }
             R.id.tv_change_password->{
                 if(R.id.tv_change_password!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,ChangePasswordFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_change_password
@@ -107,6 +118,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
             }
             R.id.tv_personal_info->{
                 if(R.id.tv_personal_info!=mFlag){
+                    mFragmentTransaction = mFragmentManager.beginTransaction()
                     mFragmentTransaction.replace(R.id.fg_content,PersonalInfoFragment())
                     mFragmentTransaction.commit()
                     mFlag = R.id.tv_personal_info

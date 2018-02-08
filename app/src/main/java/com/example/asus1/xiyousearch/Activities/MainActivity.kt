@@ -3,6 +3,7 @@ package com.example.asus1.xiyousearch.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -40,7 +41,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun init(){
         mUserName = findViewById(R.id.et_username)
+        mUserName.setText("05158091")
         mUserPassword = findViewById(R.id.et_userpassword)
+        mUserPassword.setText("abc@+1234...")
         mCheckCode = findViewById(R.id.et_checkcode)
         mChechCodeImage = findViewById(R.id.iv_checkcode)
         mLoginText = findViewById(R.id.tv_login)

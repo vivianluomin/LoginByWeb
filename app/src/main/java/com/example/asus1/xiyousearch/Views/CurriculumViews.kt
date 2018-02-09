@@ -2,6 +2,7 @@ package com.example.asus1.xiyousearch.Views
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -29,13 +30,23 @@ class CurriculumViews :FrameLayout{
     }
 
 
-    fun addClass(content:String,left:Int,top:Int,right:Int,bottom:Int){
+    fun addClass(content:String,left:Int,top:Int,height:Int){
 
        var view = TextView(mContext)
-       view.layout(left,top,right,bottom)
+        view.textSize = (12).toFloat()
+
+
+        var params = FrameLayout.LayoutParams(100,height)
+        params.leftMargin = left
+        params.topMargin = top
+
+
+        view.layoutParams = params
+
         view.setTextColor(resources.getColor(R.color.whlit))
         view.setBackgroundResource(mColorBgs[((Math.random()*10)%5).toInt()])
         view.setText(content)
+        view.gravity = View.TEXT_ALIGNMENT_CENTER
 
         addView(view)
 

@@ -7,4 +7,10 @@
     <color name="textColor">#333333</color>
     <color name="main_bule">#27408B</color>
     <color name="click">#ddd</color>
+    <color name="class_1">#FF6600</color>
+    <color name="class_2">#FFFF66</color>
+    <color name="class_3">#009966</color>
+    <color name="class_4">#FF6666</color>
+    <color name="class_5">#CC6633</color>
+    <color name="whlit">#fff</color>
 </resources>

@@ -48,10 +48,17 @@
       <com.example.asus1.xiyousearch.Views.WeeksView
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-
+          android:id="@+id/weeks"
           />
 
 
+        <com.example.asus1.xiyousearch.Views.CurriculumViews
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/curriculum"
+            >
+
+        </com.example.asus1.xiyousearch.Views.CurriculumViews>
 
 
     </FrameLayout>

@@ -25,6 +25,8 @@ object URLUtil{
 
     var cookie :String = ""
 
+    lateinit var user: User
+
     interface  CallBack<T>{
         fun getResponed(response: Response<T>)
     }

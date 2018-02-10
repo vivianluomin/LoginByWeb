@@ -15,6 +15,7 @@ import com.example.asus1.xiyousearch.R
 import com.example.asus1.xiyousearch.Services.LoginService
 import com.example.asus1.xiyousearch.Services.getCookieService
 import com.example.asus1.xiyousearch.URLUtil
+import com.example.asus1.xiyousearch.User
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -143,6 +144,8 @@ class MainActivity : AppCompatActivity() {
                 changeCheckCode()
             }else{
 
+
+                URLUtil.user = User(mUserName.text.toString(),mUserPassword.text.toString())
                 startActivity(Intent(this@MainActivity,HomePageActivity::class.java))
 
             }

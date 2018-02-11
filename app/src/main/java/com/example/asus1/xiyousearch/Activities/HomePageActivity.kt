@@ -17,8 +17,6 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var  mHomePage:TextView
     private lateinit var  mPersonalClasses:TextView
     private lateinit var  mPersnalGrades:TextView
-    private lateinit var  mSchoolPlan:TextView
-    private lateinit var  mMakeUpExam :TextView
     private lateinit var  mChangePassword:TextView
     private lateinit var  mPersonalInfo:TextView
 
@@ -42,10 +40,6 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
         mPersonalClasses.setOnClickListener(this)
         mPersnalGrades = findViewById(R.id.tv_search_grades)
         mPersnalGrades.setOnClickListener(this)
-        mSchoolPlan = findViewById(R.id.tv_school_plan)
-        mSchoolPlan.setOnClickListener(this)
-        mMakeUpExam = findViewById(R.id.tv_make_up_exam)
-        mMakeUpExam.setOnClickListener(this)
         mChangePassword = findViewById(R.id.tv_change_password)
         mChangePassword.setOnClickListener(this)
         mPersonalInfo = findViewById(R.id.tv_personal_info)
@@ -88,25 +82,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
                 }
             }
 
-            R.id.tv_school_plan->{
-                if(R.id.tv_school_plan!=mFlag){
-                    mFragmentTransaction = mFragmentManager.beginTransaction()
-                    mFragmentTransaction.replace(R.id.fg_content,SchoolPlanFragment())
-                    mFragmentTransaction.commit()
-                    mFlag = R.id.tv_school_plan
-                }
 
-            }
-
-            R.id.tv_make_up_exam->{
-                if (R.id.tv_make_up_exam!=mFlag){
-                    mFragmentTransaction = mFragmentManager.beginTransaction()
-                    mFragmentTransaction.replace(R.id.fg_content,MackUpExamFragment())
-                    mFragmentTransaction.commit()
-                    mFlag = R.id.tv_make_up_exam
-                }
-
-            }
             R.id.tv_change_password->{
                 if(R.id.tv_change_password!=mFlag){
                     mFragmentTransaction = mFragmentManager.beginTransaction()

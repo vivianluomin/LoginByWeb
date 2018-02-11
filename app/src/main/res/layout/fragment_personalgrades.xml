@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/whlit"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_grades"
+            android:textColor="@color/textColor"
+            android:textSize="12sp"
+            android:hint="@string/grades"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="20dp"
+            android:drawableRight="@mipmap/ic_jiantou"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tv_semester"
+            android:textColor="@color/textColor"
+            android:textSize="12sp"
+            android:hint="@string/semester"
+            android:layout_marginRight="20dp"
+            android:drawableRight="@mipmap/ic_jiantou"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_search_grades"
+            android:textSize="12sp"
+            android:textColor="@color/textColor"
+            android:text="@string/search"
+            android:background="@drawable/bg_btn_search"
+            android:padding = "5dp"
+            android:layout_marginRight="5dp"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_bule"
+        android:layout_marginTop="3dp"
+        />
+
+    <include layout="@layout/layout_grade_item"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_bule"
+        android:layout_marginTop="3dp"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_grades"
+        android:divider="@drawable/bg_drawerhead"
+        >
+
+    </ListView>
+
+</LinearLayout>

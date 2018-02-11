@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/tv_class_name"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:text="@string/class_name"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bule"
+        />
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_class_type"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:padding="5dp"
+        android:text="@string/class_type"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bule"
+        />
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_credit"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:padding="5dp"
+        android:text="@string/credit"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bule"
+        />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_grade_point"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:padding="5dp"
+        android:text="@string/grade_point"
+        android:gravity="center"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/main_bule"
+        />
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_marks"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:padding="5dp"
+        android:text="@string/marks"
+        android:gravity="center"
+        />
+
+</LinearLayout>

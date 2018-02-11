@@ -53,5 +53,10 @@ class CurriculumViews :FrameLayout{
 
     }
 
+    fun clearViews(){
+
+        removeAllViews()
+    }
+
 
 }

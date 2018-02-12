@@ -59,18 +59,12 @@
 
     <include layout="@layout/layout_grade_item"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/main_bule"
-        android:layout_marginTop="3dp"
-        />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list_grades"
-        android:divider="@drawable/bg_drawerhead"
+        android:divider="@null"
         >
 
     </ListView>

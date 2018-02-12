@@ -1,15 +1,13 @@
 package com.example.asus1.xiyousearch
 
-import android.util.Log
 import com.example.asus1.xiyousearch.Interceptors.ReadCookie
 import com.example.asus1.xiyousearch.Interceptors.UseCookie
-import okhttp3.Interceptor
+import com.example.asus1.xiyousearch.Module.User
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import java.util.*
 
 /**
  * Created by asus1 on 2018/2/3.

@@ -3,7 +3,6 @@ package com.example.asus1.xiyousearch.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -15,7 +14,7 @@ import com.example.asus1.xiyousearch.R
 import com.example.asus1.xiyousearch.Services.LoginService
 import com.example.asus1.xiyousearch.Services.getCookieService
 import com.example.asus1.xiyousearch.URLUtil
-import com.example.asus1.xiyousearch.User
+import com.example.asus1.xiyousearch.Module.User
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -145,9 +144,10 @@ class MainActivity : AppCompatActivity() {
             }else{
 
 
-                URLUtil.user = User(mUserName.text.toString(),mUserPassword.text.toString())
+                URLUtil.user = User(mUserName.text.toString(), mUserPassword.text.toString())
                 startActivity(Intent(this@MainActivity,HomePageActivity::class.java))
 
+                finish()
             }
         }
     }

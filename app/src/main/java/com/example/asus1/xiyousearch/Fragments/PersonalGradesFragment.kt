@@ -1,6 +1,5 @@
 package com.example.asus1.xiyousearch.Fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -10,12 +9,10 @@ import android.widget.ListView
 import android.widget.PopupWindow
 import android.widget.TextView
 import com.example.asus1.xiyousearch.Activities.GradesApater
-import com.example.asus1.xiyousearch.Grades
+import com.example.asus1.xiyousearch.Module.Grades
 import com.example.asus1.xiyousearch.R
-import com.example.asus1.xiyousearch.Services.PersonalClassService
 import com.example.asus1.xiyousearch.Services.PersonalGradesService
 import com.example.asus1.xiyousearch.URLUtil
-import com.example.asus1.xiyousearch.User
 import okhttp3.FormBody
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
@@ -86,6 +83,7 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
             }
 
             R.id.tv_search_grades ->{
+                if(mGrades.text!=""&&mSemester.text!="")
                 searchGrade()
             }
         }
@@ -199,7 +197,7 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
                         Log.d("GradeFragment",e.text())
                     }
 
-                    var grades = Grades(cl[3],cl[4],cl[6],cl[7],cl[8])
+                    var grades = Grades(cl[3], cl[4], cl[6], cl[7], cl[8])
                     dataList.add(grades)
 
                 }else{

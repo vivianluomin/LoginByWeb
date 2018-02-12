@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.example.asus1.xiyousearch.Grades
+import com.example.asus1.xiyousearch.Module.Grades
 import com.example.asus1.xiyousearch.R
 
 /**

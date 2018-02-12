@@ -17,7 +17,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var  mHomePage:TextView
     private lateinit var  mPersonalClasses:TextView
     private lateinit var  mPersnalGrades:TextView
-    private lateinit var  mChangePassword:TextView
+
     private lateinit var  mPersonalInfo:TextView
 
     private val TAG = "HomePageActivity"
@@ -40,8 +40,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
         mPersonalClasses.setOnClickListener(this)
         mPersnalGrades = findViewById(R.id.tv_search_grades)
         mPersnalGrades.setOnClickListener(this)
-        mChangePassword = findViewById(R.id.tv_change_password)
-        mChangePassword.setOnClickListener(this)
+
         mPersonalInfo = findViewById(R.id.tv_personal_info)
         mPersonalInfo.setOnClickListener(this)
 
@@ -83,15 +82,7 @@ class HomePageActivity : AppCompatActivity(),View.OnClickListener {
             }
 
 
-            R.id.tv_change_password->{
-                if(R.id.tv_change_password!=mFlag){
-                    mFragmentTransaction = mFragmentManager.beginTransaction()
-                    mFragmentTransaction.replace(R.id.fg_content,ChangePasswordFragment())
-                    mFragmentTransaction.commit()
-                    mFlag = R.id.tv_change_password
-                }
 
-            }
             R.id.tv_personal_info->{
                 if(R.id.tv_personal_info!=mFlag){
                     mFragmentTransaction = mFragmentManager.beginTransaction()

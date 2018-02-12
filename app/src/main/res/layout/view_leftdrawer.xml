@@ -83,22 +83,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_change_password"
-        android:text="@string/change_password"
-        android:textSize="12sp"
-        android:textColor="@color/textColor"
-        android:drawableLeft="@mipmap/ic_password"
-        android:layout_marginLeft="16dp"
-        android:paddingTop="10dp"
-        android:layout_marginRight="5dp"
-        android:gravity="center_vertical"
-        android:drawablePadding="10dp"
-        android:background="@drawable/bg_leftdrawer_item"
-        android:paddingBottom="5dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_personal_info"
         android:text="@string/personal_information"
         android:textSize="12sp"

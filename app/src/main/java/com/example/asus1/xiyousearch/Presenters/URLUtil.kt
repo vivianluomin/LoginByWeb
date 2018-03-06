@@ -1,8 +1,6 @@
-package com.example.asus1.xiyousearch
+package com.example.asus1.xiyousearch.Presenters
 
-import com.example.asus1.xiyousearch.Interceptors.ReadCookie
-import com.example.asus1.xiyousearch.Interceptors.UseCookie
-import com.example.asus1.xiyousearch.Module.User
+import com.example.asus1.xiyousearch.Models.User
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,8 +10,7 @@ import retrofit2.Retrofit
 /**
  * Created by asus1 on 2018/2/3.
  */
-
-object URLUtil{
+ class URLUtil private constructor(): URLReuqestInter{
 
     val CHECK_CODE :String = "http://222.24.62.120/CheckCode.aspx"
     val LOGIN_URL :String = "http://222.24.62.120"
@@ -25,12 +22,13 @@ object URLUtil{
 
     lateinit var user: User
 
-    interface  CallBack<T>{
-        fun getResponed(response: Response<T>)
+    companion object {
+        val instance = URLUtil()
     }
 
-    fun<T> doRequest(call: Call<T>,callBack: CallBack<T>){
 
+
+    override fun <T> doRequest(call: Call<T>, callBack: CallBack<T>) {
         call.enqueue(object :Callback<T>{
 
             override fun onFailure(call: Call<T>?, t: Throwable?) {
@@ -39,14 +37,12 @@ object URLUtil{
 
             override fun onResponse(call: Call<T>?, response: Response<T>?) {
 
-               if (response!=null&&response.isSuccessful){
-                   callBack.getResponed(response)
-               }
+                if (response!=null&&response.isSuccessful){
+                    callBack.getResponed(response)
+                }
             }
 
         })
-
-
 
     }
 

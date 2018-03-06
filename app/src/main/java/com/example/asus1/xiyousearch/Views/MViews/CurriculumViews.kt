@@ -1,9 +1,8 @@
-package com.example.asus1.xiyousearch.Views
+package com.example.asus1.xiyousearch.Views.MViews
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.example.asus1.xiyousearch.R

@@ -1,6 +1,5 @@
-package com.example.asus1.xiyousearch.Interceptors
+package com.example.asus1.xiyousearch.Presenters
 
-import android.webkit.URLUtil
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -16,7 +15,7 @@ class UseCookie:Interceptor{
 
         var response = chain.request()
 
-        var builder = response.newBuilder().addHeader("Cookie",com.example.asus1.xiyousearch.URLUtil.cookie)
+        var builder = response.newBuilder().addHeader("Cookie", com.example.asus1.xiyousearch.Presenters.URLUtil.instance.cookie)
                 .addHeader("Content-Type","application/x-www-form-urlencoded")
                 .addHeader("Host","222.24.62.120")
                 .addHeader("Upgrade-Insecure-Requests","1")

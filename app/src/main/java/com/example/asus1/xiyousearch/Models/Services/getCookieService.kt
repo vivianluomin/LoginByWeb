@@ -1,10 +1,8 @@
-package com.example.asus1.xiyousearch.Services
+package com.example.asus1.xiyousearch.Models.Services
 
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 import retrofit2.http.Url
 
 /**

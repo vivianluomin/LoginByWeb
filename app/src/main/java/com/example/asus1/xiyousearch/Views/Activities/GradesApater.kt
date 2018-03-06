@@ -1,11 +1,11 @@
-package com.example.asus1.xiyousearch.Activities
+package com.example.asus1.xiyousearch.Views.Activities
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import com.example.asus1.xiyousearch.Module.Grades
-import com.example.asus1.xiyousearch.Views.ViewGradeitem
+import com.example.asus1.xiyousearch.Models.Grades
+import com.example.asus1.xiyousearch.Views.MViews.ViewGradeitem
 
 /**
  * Created by asus1 on 2018/2/11.

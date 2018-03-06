@@ -1,4 +1,4 @@
-package com.example.asus1.xiyousearch.Services
+package com.example.asus1.xiyousearch.Models.Services
 
 import okhttp3.ResponseBody
 import retrofit2.Call

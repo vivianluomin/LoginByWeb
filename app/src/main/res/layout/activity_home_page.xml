@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.asus1.xiyousearch.Activities.HomePageActivity">
+    tools:context="com.example.asus1.xiyousearch.Views.Activities.HomePageActivity">
 
 
 
@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <fragment
-            android:name="com.example.asus1.xiyousearch.Fragments.BlankFragment"
+            android:name="com.example.asus1.xiyousearch.Views.Fragments.BlankFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/fg_content"

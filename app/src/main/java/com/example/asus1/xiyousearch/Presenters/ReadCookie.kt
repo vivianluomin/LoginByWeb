@@ -1,8 +1,5 @@
-package com.example.asus1.xiyousearch.Interceptors
+package com.example.asus1.xiyousearch.Presenters
 
-import android.content.SharedPreferences
-import android.support.v4.content.SharedPreferencesCompat
-import android.webkit.URLUtil
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -26,7 +23,7 @@ class ReadCookie :Interceptor{
             cookieString+=str
         }
 
-        com.example.asus1.xiyousearch.URLUtil.cookie = cookieString
+        com.example.asus1.xiyousearch.Presenters.URLUtil.instance.cookie = cookieString
 
         return response
     }

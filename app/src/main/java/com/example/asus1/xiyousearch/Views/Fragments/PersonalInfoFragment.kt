@@ -1,4 +1,4 @@
-package com.example.asus1.xiyousearch.Fragments
+package com.example.asus1.xiyousearch.Views.Fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import com.example.asus1.xiyousearch.Activities.InfoAdapter
-import com.example.asus1.xiyousearch.Module.Info
+import com.example.asus1.xiyousearch.Views.Activities.InfoAdapter
+import com.example.asus1.xiyousearch.Models.Info
 import com.example.asus1.xiyousearch.R
-import com.example.asus1.xiyousearch.Services.PersonalInfoService
-import com.example.asus1.xiyousearch.URLUtil
+import com.example.asus1.xiyousearch.Models.Services.PersonalInfoService
+import com.example.asus1.xiyousearch.Presenters.CallBack
+import com.example.asus1.xiyousearch.Presenters.URLUtil
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Response
@@ -40,17 +41,17 @@ class PersonalInfoFragment:Fragment{
     }
 
     private fun getData(){
-        var inforCall = URLUtil.mainClient.create(PersonalInfoService::class.java)
-                .getInfo(URLUtil.user.name,
+        var inforCall = URLUtil.instance.mainClient.create(PersonalInfoService::class.java)
+                .getInfo(URLUtil.instance.user.name,
                         "����",
                         "N121501",
-                        ": http://222.24.62.120/xs_main.aspx?xh="+URLUtil.user.name
+                        ": http://222.24.62.120/xs_main.aspx?xh="+ URLUtil.instance.user.name
                         )
 
-        URLUtil.doRequest(inforCall,callBack)
+        URLUtil.instance.doRequest(inforCall,callBack)
     }
 
-    private var callBack = object :URLUtil.CallBack<ResponseBody>{
+    private var callBack = object : CallBack<ResponseBody>{
         override fun getResponed(response: Response<ResponseBody>) {
 
             var element = Jsoup.parse(response.body().string())
@@ -58,7 +59,7 @@ class PersonalInfoFragment:Fragment{
 
             mDataList.add(Info(element.select("#lbxsgrxx_xh").text(),
                     element.select("#xh").text()
-                    ))
+            ))
 
             mDataList.add(Info(element.select("#lbxsgrxx_xm").text(),
                     element.select("#xm").text()

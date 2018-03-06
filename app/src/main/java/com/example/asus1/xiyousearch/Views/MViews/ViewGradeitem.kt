@@ -1,11 +1,11 @@
-package com.example.asus1.xiyousearch.Views
+package com.example.asus1.xiyousearch.Views.MViews
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.example.asus1.xiyousearch.Module.Grades
+import com.example.asus1.xiyousearch.Models.Grades
 import com.example.asus1.xiyousearch.R
 
 /**

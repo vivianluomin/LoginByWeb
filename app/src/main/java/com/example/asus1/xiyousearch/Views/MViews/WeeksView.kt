@@ -1,4 +1,4 @@
-package com.example.asus1.xiyousearch.Views
+package com.example.asus1.xiyousearch.Views.MViews
 
 import android.content.Context
 import android.graphics.Canvas

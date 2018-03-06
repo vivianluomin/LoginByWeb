@@ -1,4 +1,4 @@
-package com.example.asus1.xiyousearch.Fragments
+package com.example.asus1.xiyousearch.Views.Fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,11 +8,12 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.PopupWindow
 import android.widget.TextView
-import com.example.asus1.xiyousearch.Activities.GradesApater
-import com.example.asus1.xiyousearch.Module.Grades
+import com.example.asus1.xiyousearch.Views.Activities.GradesApater
+import com.example.asus1.xiyousearch.Models.Grades
 import com.example.asus1.xiyousearch.R
-import com.example.asus1.xiyousearch.Services.PersonalGradesService
-import com.example.asus1.xiyousearch.URLUtil
+import com.example.asus1.xiyousearch.Models.Services.PersonalGradesService
+import com.example.asus1.xiyousearch.Presenters.CallBack
+import com.example.asus1.xiyousearch.Presenters.URLUtil
 import okhttp3.FormBody
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
@@ -58,15 +59,15 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
 
 
     private fun init(){
-        var getDataCall  = URLUtil.mainClient
+        var getDataCall  = URLUtil.instance.mainClient
                 .create(PersonalGradesService::class.java).
-                getData(URLUtil.user.name,
+                getData(URLUtil.instance.user.name,
                         "����",
                         "N121605",
-                        "http://222.24.62.120/xscjcx.aspx?xh="+URLUtil.user.name+"&xm=%C2%DE%C3%F4&gnmkdm=N121605"
+                        "http://222.24.62.120/xscjcx.aspx?xh="+ URLUtil.instance.user.name+"&xm=%C2%DE%C3%F4&gnmkdm=N121605"
                         )
 
-        URLUtil.doRequest(getDataCall,callback)
+        URLUtil.instance.doRequest(getDataCall,callback)
 
     }
 
@@ -101,15 +102,15 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
         body.add("ddl_kcxz","")
         body.add("btn_xq","ѧ�ڳɼ�")
 
-        var gradesCall = URLUtil.mainClient.create(PersonalGradesService::class.java)
-                .searchGredes(URLUtil.user.name,
+        var gradesCall = URLUtil.instance.mainClient.create(PersonalGradesService::class.java)
+                .searchGredes(URLUtil.instance.user.name,
                         "%C2%DE%C3%F4",
                         "N121605",
-                        "http://222.24.62.120/xscjcx.aspx?xh="+URLUtil.user.name+"&xm=%C2%DE%C3%F4&gnmkdm=N121605",
+                        "http://222.24.62.120/xscjcx.aspx?xh="+ URLUtil.instance.user.name+"&xm=%C2%DE%C3%F4&gnmkdm=N121605",
                         body.build()
                 )
 
-        URLUtil.doRequest(gradesCall,GradeCallBack)
+        URLUtil.instance.doRequest(gradesCall,GradeCallBack)
     }
 
 
@@ -149,7 +150,7 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
     }
 
 
-    private var callback =object :URLUtil.CallBack<ResponseBody>{
+    private var callback =object : CallBack<ResponseBody>{
 
         override fun getResponed(response: Response<ResponseBody>) {
 
@@ -180,7 +181,7 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
         }
     }
 
-    private var GradeCallBack = object :URLUtil.CallBack<ResponseBody>{
+    private var GradeCallBack = object :CallBack<ResponseBody>{
         override fun getResponed(response: Response<ResponseBody>) {
             var element = Jsoup.parse(response.body().string())
 

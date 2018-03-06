@@ -1,6 +1,5 @@
-package com.example.asus1.xiyousearch.Fragments
+package com.example.asus1.xiyousearch.Views.Fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater

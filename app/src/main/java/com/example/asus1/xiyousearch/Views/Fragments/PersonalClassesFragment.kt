@@ -1,8 +1,7 @@
-package com.example.asus1.xiyousearch.Fragments
+package com.example.asus1.xiyousearch.Views.Fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.text.Layout
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -12,18 +11,14 @@ import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
 import com.example.asus1.xiyousearch.R
-import com.example.asus1.xiyousearch.Services.PersonalClassService
-import com.example.asus1.xiyousearch.URLUtil
-import com.example.asus1.xiyousearch.Views.CurriculumViews
-import com.example.asus1.xiyousearch.Views.WeeksView
-import kotlinx.android.synthetic.main.fragment_personalclasses.view.*
+import com.example.asus1.xiyousearch.Models.Services.PersonalClassService
+import com.example.asus1.xiyousearch.Presenters.CallBack
+import com.example.asus1.xiyousearch.Presenters.URLUtil
+import com.example.asus1.xiyousearch.Views.MViews.CurriculumViews
+import com.example.asus1.xiyousearch.Views.MViews.WeeksView
 import okhttp3.FormBody
-import okhttp3.MediaType
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
-import org.jsoup.select.Elements
-import retrofit2.Call
 import retrofit2.Response
 
 /**
@@ -75,13 +70,13 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
     }
 
     private fun getData(){
-        var classesService = URLUtil.mainClient.
+        var classesService = URLUtil.instance.mainClient.
                 create(PersonalClassService::class.java)
-                .getClasses(URLUtil.user.name,
+                .getClasses(URLUtil.instance.user.name,
                         "%C2%DE%C3%F4",
                         "N121603",
-                        "http://222.24.62.120/xskbcx.aspx?xh="+URLUtil.user.name+"&xm=%25C2%25DE%25C3%25F4&gnmkdm=N121603")
-        URLUtil.doRequest(classesService,callBack)
+                        "http://222.24.62.120/xskbcx.aspx?xh="+ URLUtil.instance.user.name+"&xm=%25C2%25DE%25C3%25F4&gnmkdm=N121603")
+        URLUtil.instance.doRequest(classesService,callBack)
 
     }
 
@@ -128,18 +123,18 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
 
 
 
-                var requestCall = URLUtil.
+                var requestCall = URLUtil.instance.
                         mainClient.
                         create(PersonalClassService::class.java).
                         requestClasses(
-                                URLUtil.user.name,
+                                URLUtil.instance.user.name,
                                 "%C2%DE%C3%F4",
                                 "N121603",
-                                "http://222.24.62.120/xskbcx.aspx?xh="+URLUtil.user.name+"&xm=%25C2%25DE%25C3%25F4&gnmkdm=N121603",
+                                "http://222.24.62.120/xskbcx.aspx?xh="+ URLUtil.instance.user.name+"&xm=%25C2%25DE%25C3%25F4&gnmkdm=N121603",
                                 builder.build()
                         )
 
-                URLUtil.doRequest(requestCall,requestCallBack)
+                URLUtil.instance.doRequest(requestCall,requestCallBack)
 
             }
 
@@ -264,7 +259,7 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
         }
     }
 
-    val callBack = object :URLUtil.CallBack<ResponseBody>{
+    val callBack = object : CallBack<ResponseBody>{
 
         override fun getResponed(response: Response<ResponseBody>) {
             showData(response)
@@ -274,7 +269,7 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
 
     }
 
-    val requestCallBack = object :URLUtil.CallBack<ResponseBody>{
+    val requestCallBack = object : CallBack<ResponseBody>{
         override fun getResponed(response: Response<ResponseBody>) {
             showData(response)
         }

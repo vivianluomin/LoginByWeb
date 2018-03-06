@@ -1,11 +1,11 @@
-package com.example.asus1.xiyousearch.Activities
+package com.example.asus1.xiyousearch.Views.Activities
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import com.example.asus1.xiyousearch.Module.Info
-import com.example.asus1.xiyousearch.Views.ViewInfoItem
+import com.example.asus1.xiyousearch.Models.Info
+import com.example.asus1.xiyousearch.Views.MViews.ViewInfoItem
 
 /**
  * Created by asus1 on 2018/2/12.

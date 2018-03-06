@@ -1,4 +1,4 @@
-package com.example.asus1.xiyousearch.Module
+package com.example.asus1.xiyousearch.Models
 
 /**
  * Created by asus1 on 2018/2/11.

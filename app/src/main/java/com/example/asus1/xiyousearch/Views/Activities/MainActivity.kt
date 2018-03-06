@@ -1,4 +1,4 @@
-package com.example.asus1.xiyousearch.Activities
+package com.example.asus1.xiyousearch.Views.Activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -11,10 +11,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.asus1.xiyousearch.R
-import com.example.asus1.xiyousearch.Services.LoginService
-import com.example.asus1.xiyousearch.Services.getCookieService
-import com.example.asus1.xiyousearch.URLUtil
-import com.example.asus1.xiyousearch.Module.User
+import com.example.asus1.xiyousearch.Models.Services.LoginService
+import com.example.asus1.xiyousearch.Models.Services.getCookieService
+import com.example.asus1.xiyousearch.Presenters.URLUtil
+import com.example.asus1.xiyousearch.Models.User
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                             ,""
                             ,password
                             ,checkcode
-                            ,URLUtil.STUDENT
+                            , URLUtil.STUDENT
                             ,""
                             ,""
                             ,""
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
        mClickCount ++
     }
 
-    val cookieCallBack = object :URLUtil.CallBack<ResponseBody>{
+    val cookieCallBack = object : URLUtil.CallBack<ResponseBody>{
         override fun getResponed(response: Response<ResponseBody>) {
             Log.d(TAG,"getcookie"+response.code())
             if(response.code() == 200){
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    val callback :URLUtil.CallBack<ResponseBody> = object : URLUtil.CallBack<ResponseBody> {
+    val callback : URLUtil.CallBack<ResponseBody> = object : URLUtil.CallBack<ResponseBody> {
 
 
         override fun getResponed(response: Response<ResponseBody>) {
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 URLUtil.user = User(mUserName.text.toString(), mUserPassword.text.toString())
-                startActivity(Intent(this@MainActivity,HomePageActivity::class.java))
+                startActivity(Intent(this@MainActivity, HomePageActivity::class.java))
 
                 finish()
             }

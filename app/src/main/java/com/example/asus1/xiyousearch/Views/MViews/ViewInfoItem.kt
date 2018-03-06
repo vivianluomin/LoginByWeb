@@ -1,11 +1,11 @@
-package com.example.asus1.xiyousearch.Views
+package com.example.asus1.xiyousearch.Views.MViews
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.example.asus1.xiyousearch.Module.Info
+import com.example.asus1.xiyousearch.Models.Info
 import com.example.asus1.xiyousearch.R
 
 /**
@@ -36,7 +36,7 @@ class ViewInfoItem:FrameLayout{
 
     }
 
-    fun setData(item:Info){
+    fun setData(item: Info){
         mKey.text = item.key
         mValue.text = item.value
     }

@@ -12,34 +12,35 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import com.example.asus1.xiyousearch.R
 import com.example.asus1.xiyousearch.Models.Services.PersonalClassService
-import com.example.asus1.xiyousearch.Presenters.CallBack
+import com.example.asus1.xiyousearch.Presenters.ClassFisrtCall
 import com.example.asus1.xiyousearch.Presenters.URLUtil
 import com.example.asus1.xiyousearch.Views.MViews.CurriculumViews
 import com.example.asus1.xiyousearch.Views.MViews.WeeksView
 import okhttp3.FormBody
-import okhttp3.ResponseBody
-import org.jsoup.Jsoup
-import retrofit2.Response
 
 /**
  * Created by asus1 on 2018/2/5.
  */
 
-class PersonalClassesFragment :Fragment,View.OnClickListener{
+class PersonalClassesFragment :Fragment,View.OnClickListener, ClassShowDataInter {
 
     private lateinit var mCurriculumViews: CurriculumViews
     private lateinit var mWeeksView:WeeksView
     private lateinit var mGrades : TextView
     private lateinit var mSemester:TextView
 
-    private var xndList = arrayListOf<String>()
-    private var xqdList = arrayListOf<String>()
+    private var mxndList = arrayListOf<String>()
+    private var mxqdList = arrayListOf<String>()
 
-    private var classList = arrayListOf<ArrayList<String>>()
+    private var mclassList = arrayListOf<ArrayList<String>>()
 
     private var isFirst = true
 
     private val TAG = "ClassFragment"
+
+    private var callBack = ClassFisrtCall(this)
+
+    private val requestCallBack = ClassFisrtCall(this)
 
 
     constructor()
@@ -84,12 +85,12 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.tv_grades->{
-                showWindow(mGrades,xndList,"xnd")
+                showWindow(mGrades,mxndList,"xnd")
 
             }
 
             R.id.tv_semester->{
-                showWindow(mSemester,xqdList,"xqd")
+                showWindow(mSemester,mxqdList,"xqd")
 
             }
         }
@@ -154,51 +155,23 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
     }
 
 
-
-    private fun showData(response: Response<ResponseBody>){
-
+    override fun showData(xndList: ArrayList<String>,
+                          xqdList: ArrayList<String>,
+                          classList: ArrayList<ArrayList<String>>) {
         mCurriculumViews.clearViews()
-        xndList.clear()
-        xqdList.clear()
-        classList.clear()
+        mxndList.clear()
+        mxqdList.clear()
+        mclassList.clear()
 
-        var elements = Jsoup.parse(response.body().string())
-
-
-        var xnd = elements.select("#xnd")[0].getElementsByTag("option")
-        for (el in  xnd){
-            xndList.add(el.text())
-
-        }
-        var xqd = elements.select("#xqd")[0].getElementsByTag("option")
-
-        for (el in  xqd){
-            xqdList.add(el.text())
-
-        }
-
-        var table1 = elements.select("#Table1")
-
-        var list = table1.select("tr")
+        mxndList.addAll(xndList)
+        mxqdList.addAll(xqdList)
+        mclassList.addAll(classList)
 
 
-        var i = 0
-        for (el in list){
-            if(i>1){
-                var cl = arrayListOf<String>()
-                for (e in el.select("td")){
-                    cl.add(e.text())
-                }
-
-                classList.add(cl)
-            }else{
-                i++
-            }
-        }
 
         if(isFirst){
-            mGrades.text = xndList[0]
-            mSemester.text = xqdList[0]
+            mGrades.text = mxndList[0]
+            mSemester.text = mxqdList[0]
             isFirst = false
 
         }
@@ -209,7 +182,7 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
         var j = 1
 
 
-        for (classes in classList){
+        for (classes in mclassList){
             if(classes.size == 9 || classes.size == 8){
 
                 if(classes.size == 9){
@@ -256,22 +229,6 @@ class PersonalClassesFragment :Fragment,View.OnClickListener{
             if(j%2 == 1)
                 k++
             j++
-        }
-    }
-
-    val callBack = object : CallBack<ResponseBody>{
-
-        override fun getResponed(response: Response<ResponseBody>) {
-            showData(response)
-
-        }
-
-
-    }
-
-    val requestCallBack = object : CallBack<ResponseBody>{
-        override fun getResponed(response: Response<ResponseBody>) {
-            showData(response)
         }
     }
 

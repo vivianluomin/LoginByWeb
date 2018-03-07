@@ -13,6 +13,8 @@ import com.example.asus1.xiyousearch.Models.Grades
 import com.example.asus1.xiyousearch.R
 import com.example.asus1.xiyousearch.Models.Services.PersonalGradesService
 import com.example.asus1.xiyousearch.Presenters.CallBack
+import com.example.asus1.xiyousearch.Presenters.GradeCall
+import com.example.asus1.xiyousearch.Presenters.GradeXCall
 import com.example.asus1.xiyousearch.Presenters.URLUtil
 import okhttp3.FormBody
 import okhttp3.ResponseBody
@@ -23,7 +25,7 @@ import retrofit2.Response
  * Created by asus1 on 2018/2/5.
  */
 
-class PersonalGradesFragment :Fragment,View.OnClickListener{
+class PersonalGradesFragment :Fragment,View.OnClickListener,GradeShowDataInter{
 
     private lateinit var mGrades:TextView
     private lateinit var mSemester:TextView
@@ -34,6 +36,9 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
 
     private val xndList = arrayListOf<String>()
     private val xqdList = arrayListOf<String>()
+
+    private var callback = GradeXCall(this)
+    private var GradeCallBack = GradeCall(this)
 
     constructor()
 
@@ -150,62 +155,20 @@ class PersonalGradesFragment :Fragment,View.OnClickListener{
     }
 
 
-    private var callback =object : CallBack<ResponseBody>{
+    override fun showXData(xnd: ArrayList<String>, xqd: ArrayList<String>) {
+        xndList.clear()
+        xqdList.clear()
+        xndList.addAll(xnd)
+        xqdList.addAll(xqd)
 
-        override fun getResponed(response: Response<ResponseBody>) {
-
-            var element = Jsoup.parse(response.body().string())
-
-            var xnd = element.select("#ddlXN")
-
-            Log.d("gradesFrag",xnd.html())
-
-            for (el in xnd.text().split(" ")){
-                if (el!=""){
-                    xndList.add(el)
-                    Log.d("gradesFrag",el)
-                }
-            }
-
-            var xqd = element.select("#ddlXQ").text().split(" ")
-            println(xqd)
-
-            for (el in xqd){
-
-                if(el!=""){
-                    xqdList.add(el)
-                    Log.d("gradesFrag",el)
-                }
-            }
-
-        }
     }
 
-    private var GradeCallBack = object :CallBack<ResponseBody>{
-        override fun getResponed(response: Response<ResponseBody>) {
-            var element = Jsoup.parse(response.body().string())
-
-            var table = element.select("#Datagrid1")
-            var list = table.select("tr")
-
-            var i = 0
-            dataList.clear()
-            for (el in list){
-                if(i>1){
-                    var cl = arrayListOf<String>()
-                    for (e in el.select("td")){
-                        cl.add(e.text())
-                        Log.d("GradeFragment",e.text())
-                    }
-
-                    var grades = Grades(cl[3], cl[4], cl[6], cl[7], cl[8])
-                    dataList.add(grades)
-
-                }else{
-                    i++
-                }
-            }
-            mAdapter.notifyDataSetChanged()
-        }
+    override fun showGradeData(grades: ArrayList<Grades>) {
+        dataList.clear()
+        dataList.addAll(grades)
+        mAdapter.notifyDataSetChanged()
     }
+
+
+
 }

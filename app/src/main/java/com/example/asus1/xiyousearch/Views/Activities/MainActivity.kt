@@ -15,6 +15,7 @@ import com.example.asus1.xiyousearch.Models.Services.LoginService
 import com.example.asus1.xiyousearch.Models.Services.getCookieService
 import com.example.asus1.xiyousearch.Presenters.URLUtil
 import com.example.asus1.xiyousearch.Models.User
+import com.example.asus1.xiyousearch.Presenters.CallBack
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -55,8 +56,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun getCookie(){
-        var CookieService = URLUtil.client.create(getCookieService::class.java).getCookie(URLUtil.CHECK_CODE)
-        URLUtil.doRequest(CookieService,cookieCallBack)
+        var CookieService = URLUtil.instance.client.create(getCookieService::class.java).getCookie(URLUtil.instance.CHECK_CODE)
+        URLUtil.instance.doRequest(CookieService,cookieCallBack)
 
     }
 
@@ -74,20 +75,20 @@ class MainActivity : AppCompatActivity() {
             val password = mUserPassword.text.toString()
             val checkcode = mCheckCode.text.toString()
 
-            val loginService :Call<ResponseBody> = URLUtil.mainClient
+            val loginService :Call<ResponseBody> = URLUtil.instance.mainClient
                     .create(LoginService::class.java)
                     .doLogin("dDwxNTMxMDk5Mzc0Ozs+lYSKnsl/mKGQ7CKkWFJpv0btUa8="
                             ,name
                             ,""
                             ,password
                             ,checkcode
-                            , URLUtil.STUDENT
+                            , URLUtil.instance.STUDENT
                             ,""
                             ,""
                             ,""
                             )
 
-            URLUtil.doRequest(loginService,callback)
+            URLUtil.instance.doRequest(loginService,callback)
 
 
         })
@@ -95,15 +96,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeCheckCode(){
-        var url :String  = URLUtil.CHECK_CODE
+        var url :String  = URLUtil.instance.CHECK_CODE
         for (i in 1..mClickCount){
             url+="?"
         }
 
         Log.d(TAG,url)
 
-        var CookieService = URLUtil.mainClient.create(getCookieService::class.java).getCookie(url.trim())
-        URLUtil.doRequest(CookieService,cookieCallBack)
+        var CookieService = URLUtil.instance.mainClient.create(getCookieService::class.java).getCookie(url.trim())
+        URLUtil.instance.doRequest(CookieService,cookieCallBack)
     }
 
 
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity() {
        mClickCount ++
     }
 
-    val cookieCallBack = object : URLUtil.CallBack<ResponseBody>{
+    val cookieCallBack = object : CallBack<ResponseBody>{
         override fun getResponed(response: Response<ResponseBody>) {
             Log.d(TAG,"getcookie"+response.code())
             if(response.code() == 200){
@@ -127,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    val callback : URLUtil.CallBack<ResponseBody> = object : URLUtil.CallBack<ResponseBody> {
+    val callback : CallBack<ResponseBody> = object : CallBack<ResponseBody> {
 
 
         override fun getResponed(response: Response<ResponseBody>) {
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity() {
             }else{
 
 
-                URLUtil.user = User(mUserName.text.toString(), mUserPassword.text.toString())
+                URLUtil.instance.user = User(mUserName.text.toString(), mUserPassword.text.toString())
                 startActivity(Intent(this@MainActivity, HomePageActivity::class.java))
 
                 finish()
